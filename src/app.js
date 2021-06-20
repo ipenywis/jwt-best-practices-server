@@ -2,6 +2,7 @@ const express = require("express");
 const morgan = require("morgan");
 const helmet = require("helmet");
 const cors = require("cors");
+const path = require("path");
 const bodyParser = require("body-parser");
 require("dotenv").config();
 require("./auth/passport");
@@ -22,9 +23,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.json({
-    message: "🦄🌈✨👋🌎🌍🌏✨🌈🦄",
-  });
+  res.sendFile(path.join(__dirname, "pages/homepage.html"));
 });
 
 app.use("/api/v1", api);

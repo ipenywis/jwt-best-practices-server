@@ -10,7 +10,7 @@
     "test": "mocha --exit"
   },
   "keywords": [],
-  "author": "CJ R. <cj@null.computer> (https://w3cj.now.sh)",
+  "author": "Islem Maboud",
   "repository": {
     "type": "git",
     "url": "https://github.com/w3cj/express-api-starter.git"
@@ -30,6 +30,7 @@
     "sequelize": "^6.3.5"
   },
   "devDependencies": {
+    "autocannon": "^7.3.0",
     "eslint": "^7.14.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",

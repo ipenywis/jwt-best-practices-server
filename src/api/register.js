@@ -6,8 +6,6 @@ const router = express.Router();
 router.post("/register", async (req, res) => {
   const { fullName, email, password } = req.body;
 
-  console.log("Data: ", req.body);
-
   if (!fullName || !email || !password) {
     return res
       .status(400)
@@ -26,7 +24,6 @@ router.post("/register", async (req, res) => {
 
   const newUser = new User({ fullName, email, password });
   const savedUser = await newUser.save().catch((err) => {
-    console.log("Error: ", err);
     res.status(500).json({ error: "Cannot register user at the moment!" });
   });
 

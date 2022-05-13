@@ -9,6 +9,7 @@ passport.use(
     {
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       secretOrKey: process.env.JWT_SECRET,
+      maxAge: "2h",
     },
     function (jwtPayload, done) {
       return User.findOne({ where: { id: jwtPayload.id } })

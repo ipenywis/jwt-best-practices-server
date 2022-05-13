@@ -16,9 +16,9 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+app.use(cors({ allowedHeaders: "*", allowMethods: "*", allowOrigin: "*", origin: "*", exposedHeaders: "*" }));
 app.use(morgan("dev"));
 app.use(helmet());
-app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {

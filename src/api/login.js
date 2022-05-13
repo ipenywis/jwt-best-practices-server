@@ -28,7 +28,9 @@ router.post("/login", async (req, res) => {
     process.env.JWT_SECRET
   );
 
-  res.json({ message: "Welcome Back!", token: jwtToken });
+  userWithEmail.password = undefined;
+
+  res.json({ message: "Welcome Back!", token: jwtToken, user: userWithEmail });
 });
 
 module.exports = router;

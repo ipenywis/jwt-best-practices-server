@@ -28,16 +28,12 @@ passport.use(
       passReqToCallback: true,
     },
     async function (req, jwtPayload, done) {
-      const token = req.cookies["api-auth"];
       return User.findOne({ where: { id: jwtPayload.id } })
         .then(async (user) => {
-          const redisUser = await client.get(String(user.id));
-          let parsedUserData = JSON.parse(redisUser);
-          parsedUserData = parsedUserData[String(user.id)];
-          if (parsedUserData && parsedUserData.includes(token)) {
-            return done({ message: "Invalid Token!" }, false);
+          if (user) {
+            done(null, user);
           } else {
-            return done(null, user);
+            done(null, false);
           }
         })
         .catch((err) => {

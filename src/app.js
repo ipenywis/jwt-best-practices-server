@@ -60,6 +60,7 @@ app.get("/", (req, res) => {
   });
 });
 
+require("./middlewares/auth")(app);
 app.use("/api/v1", api);
 
 app.use(middlewares.notFound);

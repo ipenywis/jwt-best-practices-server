@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get("/stealToken", (req, res) => {
   console.log("Stolen JWT Token: ", req.query.token);
-  res.send("Token is stolen!");
+  res.send("Token has been stolen!");
 });
 
 module.exports = router;

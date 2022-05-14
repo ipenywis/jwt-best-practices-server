@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 require("dotenv").config();
 require("./auth/passport");
+require("./redis");
 
 require("./models/user");
 

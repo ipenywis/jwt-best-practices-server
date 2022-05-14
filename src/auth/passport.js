@@ -3,6 +3,7 @@ const passportJwt = require("passport-jwt");
 const ExtractJwt = passportJwt.ExtractJwt;
 const StrategyJwt = passportJwt.Strategy;
 const User = require("../models/user");
+const client = require("../redis");
 
 const cookieExtractor = function (req) {
   let token = null;
@@ -24,11 +25,20 @@ passport.use(
       jwtFromRequest: cookieExtractor,
       secretOrKey: process.env.JWT_SECRET,
       maxAge: "7d",
+      passReqToCallback: true,
     },
-    function (jwtPayload, done) {
+    async function (req, jwtPayload, done) {
+      const token = req.cookies["api-auth"];
       return User.findOne({ where: { id: jwtPayload.id } })
-        .then((user) => {
-          return done(null, user);
+        .then(async (user) => {
+          const redisUser = await client.get(String(user.id));
+          let parsedUserData = JSON.parse(redisUser);
+          parsedUserData = parsedUserData[String(user.id)];
+          if (parsedUserData && parsedUserData.includes(token)) {
+            return done({ message: "Invalid Token!" }, false);
+          } else {
+            return done(null, user);
+          }
         })
         .catch((err) => {
           return done(err);

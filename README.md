@@ -1,4 +1,4 @@
-# Express API Starter
+# Express JWT Auth Best Practices Project
 
 This Repo has three branches for the different parts of the project (good vs bad practices)
 As explained on Youtube Video Tutorial: https://youtu.be/FVmxtmzyrSw

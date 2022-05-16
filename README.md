@@ -5,6 +5,7 @@ As explained on Youtube Video Tutorial: https://youtu.be/FVmxtmzyrSw
 
 ## Branches for Bad & Good Practices
 
+- master has the best approach with all implementation, same as: redis-blacklist branch
 - bad-auth (Bad JWT Practices - No Session - Storing on Localstorage)
 - good-auth ()
 - redis-blacklist (Server Session implementation using Redis with Blacklist technique)

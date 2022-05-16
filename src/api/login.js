@@ -1,6 +1,7 @@
 const express = require("express");
 const User = require("../models/user");
 const jwt = require("jsonwebtoken");
+const dayjs = require("dayjs");
 
 const router = express.Router();
 
@@ -28,7 +29,15 @@ router.post("/login", async (req, res) => {
     process.env.JWT_SECRET
   );
 
-  res.json({ message: "Welcome Back!", token: jwtToken });
+  userWithEmail.password = undefined;
+
+  res.cookie("api-auth", jwtToken, {
+    secure: false,
+    httpOnly: true,
+    expires: dayjs().add(7, "days").toDate(),
+  });
+
+  res.json({ message: "Welcome Back!", user: userWithEmail });
 });
 
 module.exports = router;

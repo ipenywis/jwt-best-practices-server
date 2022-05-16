@@ -7,7 +7,7 @@ As explained on Youtube Video Tutorial: https://youtu.be/FVmxtmzyrSw
 
 - master has the best approach with all implementation, same as: redis-blacklist branch
 - bad-auth (Bad JWT Practices - No Session - Storing on Localstorage)
-- good-auth ()
+- good-auth (Good JWT Practices - No Session - Storing on HTTP-ONLY cookies)
 - redis-blacklist (Server Session implementation using Redis with Blacklist technique)
 
 Includes API Server utilities:
